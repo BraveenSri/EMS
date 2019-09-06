@@ -1,0 +1,4 @@
+[INFO ] 2018-09-14 14:45:15.304 [main] EmsBootApplication - Starting EmsBootApplication on G5CG6524LD6E with PID 21092 (C:\Users\212711615\Downloads\ems-boot\bin\main started by 212711615 in C:\Users\212711615\Downloads\ems-boot)
+[DEBUG] 2018-09-14 14:45:15.309 [main] EmsBootApplication - Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+[INFO ] 2018-09-14 14:45:15.310 [main] EmsBootApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-09-14 14:45:25.995 [main] EmsBootApplication - Started EmsBootApplication in 11.228 seconds (JVM running for 12.39)

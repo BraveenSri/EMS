@@ -1,0 +1,330 @@
+<div class="header">
+  <img src="src\assets\images\LogoHorizontal.jpg"/>
+  <button mat-raised-button
+          class="addBtn"
+          color="primary"
+          (click)="onAdd()">
+    Add new
+  </button>
+  <button mat-raised-button
+          class="signOutBtn"
+          color="primary"
+          (click)="onSignOut()">
+    Sign Out
+  </button>
+</div>
+<div class="viewBody"
+     id="viewBody">
+  <div class="searchHeader">
+    <form method="POST" 
+          name="searchEmployee">
+      <div class="formGroup">
+        <mat-form-field class="viewFirstName">
+          <input matInput
+                 class="viewFirstNameTxt" 
+                 name="viewFirstNameTxt"
+                 id="viewFirstNameTxt" 
+                 type="text" 
+                 placeholder="First Name"
+                 [(ngModel)]="firstNameList"/>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="viewLastName">
+          <input matInput
+                 class="viewLastNameTxt" 
+                 name="viewLastNameTxt"
+                 id="viewLastNameTxt" 
+                 type="text" 
+                 placeholder="Last Name"
+                 [(ngModel)]="lastNameList"/>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="viewUserId">
+          <input matInput
+                 class="viewUserIdTxt" 
+                 name="viewUserIdTxt"
+                 id="viewUserIdTxt"
+                 type="text" 
+                 placeholder="User Id"
+                 [(ngModel)]="UserIdList"/>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="viewDepartment">
+          <mat-select class="viewDepartmentLst"
+                      name="viewDepartmentLst"
+                      id="viewDepartmentLst"
+                      placeholder="Department"
+                      [(value)]="departmentList">
+            <mat-option>--None--</mat-option>
+            <mat-option *ngFor="let department of departments"
+                        [value]="department.name">
+              {{department.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="view"
+      id="view">
+    <table class="employeeTable"
+           id="employeeTable"
+           style="width: 100%">
+      <tr>
+        <th>User Id</th>
+        <th>FirstName</th> 
+        <th>LastName</th>
+        <th>Username</th>
+        <th>DoB</th>
+        <th>Gender</th>
+        <th>Department</th>
+        <th>Role</th>
+        <th>Address</th>
+        <th>ContactNo</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let user of filteredUsers"
+          [class.selected]="user === selectedUser">
+        <td>{{user.userId}}</td>
+        <td>{{user.firstName}}</td> 
+        <td>{{user.lastName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.dob}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.department}}</td>
+        <td>{{user.role}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.contactNo}}</td>
+        <td>
+          <button mat-button
+                  class="deleteBtn"
+                  color="primary"
+                  (click)="onDelete(user.username)">
+            Delete
+          </button>
+        </td>
+        <td>
+          <button mat-button
+                  class="updateBtn"
+                  color="primary"
+                  (click)="onUpdate(user)">
+            Update
+          </button>
+        </td>
+      </tr>
+    </table>
+    <div id="snackbar1">Successfully deleted</div>
+    <div id="snackbar2">Something went wrong!</div>
+  </div>
+</div>
+<div class="editBody"
+     id="editBody">
+  <div class="titleHeader">
+    <h1>Update User Details</h1>
+  </div>
+  <form name="update"
+        autocomplete="off">
+    <div *ngIf="selectedUser">
+      <div class="formGroup">
+        <mat-form-field class="userId">
+          <input matInput
+                 class="userIdTxt"
+                 name="userIdTxt"
+                 id="userIdTxt"
+                 type="text"
+                 placeholder="User Id"
+                 required
+                 disabled
+                 [(ngModel)]="selectedUser.userId">
+          <mat-hint>Alphanumeric Characters only</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="firstName">
+          <input matInput
+                 class="firstNameTxt"
+                 name="firstNameTxt"
+                 id="firstNameTxt"
+                 type="text"
+                 placeholder="First Name"
+                 required
+                 [formControl]="firstNameFormControl"
+                 [errorStateMatcher]="matcher"
+                 [(ngModel)]="selectedUser.firstName">
+          <mat-hint>Alphabet Characters only</mat-hint>
+          <mat-error *ngIf="firstNameFormControl.hasError('pattern') &&
+                           !firstNameFormControl.hasError('required')">
+            Please enter a valid First Name
+          </mat-error>
+          <mat-error *ngIf="firstNameFormControl.hasError('required')">
+            First Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="lastName">
+          <input matInput
+                 class="lastNameTxt"
+                 name="lastNameTxt"
+                 id="lastNameTxt"
+                 type="text"
+                 placeholder="Last Name"
+                 required
+                 [formControl]="lastNameFormControl"
+                 [errorStateMatcher]="matcher"
+                 [(ngModel)]="selectedUser.lastName">
+          <mat-hint>Alphabet Characters only</mat-hint>
+          <mat-error *ngIf="lastNameFormControl.hasError('pattern') &&
+                           !lastNameFormControl.hasError('required')">
+            Please enter a valid Last Name
+          </mat-error>
+          <mat-error *ngIf="lastNameFormControl.hasError('required')">
+            Last Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="username">
+          <input matInput
+                 class="usernameTxt"
+                 name="usernameTxt"
+                 id="usernameTxt"
+                 type="text"
+                 placeholder="Username"
+                 required
+                 disabled
+                 [(ngModel)]="selectedUser.username">
+          <mat-hint>Alphanumeric & (_) characters only</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="dob">
+          <input matInput
+                 class="dobTxt"
+                 name="dobTxt"
+                 id="dobTxt"
+                 placeholder="DoB"
+                 required
+                 [matDatepicker]="picker"
+                 [formControl]="dobFormControl"
+                 [errorStateMatcher]="matcher"
+                 [(ngModel)]="selectedUser.dob">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="dobFormControl.hasError('required')">
+            DoB is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="gender">
+          <mat-select class="genderLst"
+                      name="genderLst" 
+                      id="genderLst" 
+                      placeholder="Gender"
+                      required
+                      [(value)]="selectedUser.gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="department">
+          <mat-select class="departmentLst"
+                      name="departmentLst"
+                      id="departmentLst" 
+                      placeholder="Department"
+                      required
+                      [(value)]="selectedUser.department">
+            <mat-option value=null>--None--</mat-option>
+            <mat-option *ngFor="let department of departments"
+                        [value]="department.name">
+              {{department.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> 
+      <div class="formGroup">
+        <mat-form-field class="role">
+          <mat-select class="roleLst" 
+                      name="roleLst" 
+                      id="roleLst" 
+                      placeholder="Role"
+                      required
+                      [(value)]="selectedUser.role">
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="Normal">Normal</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> 
+      <div class="formGroup">
+        <mat-form-field class="address">
+          <input matInput
+                 class="addressTxt" 
+                 name="addressTxt"
+                 id="addressTxt" 
+                 type="text" 
+                 placeholder="Address"
+                 required
+                 [formControl]="addressFormControl"
+                 [errorStateMatcher]="matcher"
+                 [(ngModel)]="selectedUser.address">
+          <mat-error *ngIf="addressFormControl.hasError('required')">
+            Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <mat-form-field class="contactNo">
+          <span matPrefix>+94 &nbsp;</span>
+          <input matInput
+                 class="contactNoTxt"
+                 name="contactNoTxt" 
+                 id="contactNoTxt" 
+                 type="text" 
+                 placeholder="Contact No"
+                 required
+                 [formControl]="contactNoFormControl"
+                 [errorStateMatcher]="matcher"
+                 [(ngModel)]="selectedUser.contactNo">
+          <mat-hint>Numeric characters only</mat-hint>
+          <mat-error *ngIf="contactNoFormControl.hasError('pattern') && 
+                           !contactNoFormControl.hasError('required') &&
+                           !contactNoFormControl.hasError('minlength') && 
+                           !contactNoFormControl.hasError('maxlength')">
+            Please enter a valid Contact No 
+          </mat-error>
+          <mat-error *ngIf="contactNoFormControl.hasError('required') || 
+                           contactNoFormControl.hasError('minlength') ||
+                           contactNoFormControl.hasError('maxlength')">
+            Contact No is <strong>required</strong> & should have 9 digits
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-flat-button
+              class="saveBtn"
+              [disabled]="!firstNameFormControl.valid ||!lastNameFormControl.valid || 
+                         !dobFormControl.valid || !addressFormControl.valid || 
+                         !contactNoFormControl.valid"
+              (click)="onSave()">
+        Save
+      </button>
+      <button mat-stroked-button
+              class="cancelBtn"
+              (click)="onCancel()">
+        Cancel
+      </button>   
+    </div>
+    <div id="snackbar3">Successfully updated</div>
+    <div id="snackbar4">Something went wrong!</div>
+  </form>
+</div>
+<div class="footer">
+  <p>©Copyright 2018 Employee Management System. All Rights Reserved</p>
+</div>

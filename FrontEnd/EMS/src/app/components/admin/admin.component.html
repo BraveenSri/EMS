@@ -1,0 +1,25 @@
+<div class="header">
+  <img src="src\assets\images\LogoHorizontal.jpg"/>
+  <button mat-raised-button
+          class="signOutBtn"
+          color="primary"
+          (click)="onSignOut()">
+    Sign Out
+  </button>
+</div>
+<div class="body">
+  <h1 class="h1">Welcome Admin User</h1>
+  <img src="src\assets\images\Logo.png"/>
+  <h2 class="h2A">This application helps to manage</h2>
+  <h2 class="h2B">the list of employees in the organization</h2>
+  <button mat-raised-button
+          class="detailBtn"
+          color="primary"
+          (click)="onDetail()">
+    Employee Details
+  </button>
+</div>
+<div class="footer">
+  <p>Welcome to Employee Management System</p>
+</div>
+<router-outlet></router-outlet>

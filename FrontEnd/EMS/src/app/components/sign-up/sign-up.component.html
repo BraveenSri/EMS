@@ -1,0 +1,273 @@
+<div class="header">
+  <img src="src\assets\images\LogoHorizontal.jpg"/>
+  <button mat-raised-button
+          class="signInBtn"
+          color="primary"
+          (click)="onSignIn()">
+    Sign In
+  </button>
+</div>
+<div class="titleHeader">
+  <h1>Sign Up to Account</h1>
+</div>
+<div class="body">
+  <form name="signUp"
+        autocomplete="off">
+    <div class="formGroup">
+      <mat-form-field class="firstName">
+        <input matInput
+               class="firstNameTxt"
+               id="firstNameTxt"
+               type="text"
+               placeholder="First Name"
+               required
+               [formControl]="firstNameFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.firstName">
+        <mat-hint>Alphabet Characters only</mat-hint>
+        <mat-error *ngIf="firstNameFormControl.hasError('pattern') &&
+                         !firstNameFormControl.hasError('required')">
+          Please enter a valid First Name
+        </mat-error>
+        <mat-error *ngIf="firstNameFormControl.hasError('required')">
+          First Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="lastName">
+        <input matInput
+               class="lastNameTxt"
+               id="lastNameTxt"
+               type="text"
+               placeholder="Last Name"
+               required
+               [formControl]="lastNameFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.lastName">
+        <mat-hint>Alphabet Characters only</mat-hint>
+        <mat-error *ngIf="lastNameFormControl.hasError('pattern') &&
+                         !lastNameFormControl.hasError('required')">
+          Please enter a valid Last Name
+        </mat-error>
+        <mat-error *ngIf="lastNameFormControl.hasError('required')">
+          Last Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="username">
+        <input matInput
+               class="usernameTxt"
+               id="usernameTxt"
+               type="text"
+               placeholder="Username"
+               required
+               [formControl]="usernameFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.username">
+        <mat-hint>Alphanumeric & (_) characters only</mat-hint>
+        <mat-error *ngIf="usernameFormControl.hasError('minlength') &&
+                         !usernameFormControl.hasError('pattern') &&
+                         !usernameFormControl.hasError('required')">
+          Minimum 8 characters <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="usernameFormControl.hasError('pattern') &&
+                         !usernameFormControl.hasError('required')">
+          Please enter a valid Username
+        </mat-error>
+        <mat-error *ngIf="usernameFormControl.hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="password">
+        <input matInput
+               class="passwordTxt"
+               id="passwordTxt"
+               type="password"
+               placeholder="Password"
+               required
+               [formControl]="passwordFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.password">
+        <mat-hint>Alphanumeric & (_,@,#) characters only</mat-hint>
+        <mat-error *ngIf="passwordFormControl.hasError('minlength') &&
+                         !passwordFormControl.hasError('pattern') &&
+                         !passwordFormControl.hasError('required')">
+          Minimum 8 characters <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('pattern') &&
+                         !passwordFormControl.hasError('required')">
+          Please enter a valid Password
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="retypePassword">
+        <input matInput
+               class="retypePasswordTxt"
+               id="retypePasswordTxt"
+               type="password"
+               placeholder="Retype Password"
+               required
+               [formControl]="retypePasswordFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="retypePassword">
+        <mat-hint>Alphanumeric & (_,@,#) characters only</mat-hint>
+        <mat-error *ngIf="retypePasswordFormControl.hasError('minlength') &&
+                         !retypePasswordFormControl.hasError('pattern') &&
+                         !retypePasswordFormControl.hasError('required')">
+          Minimum 8 characters <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="retypePasswordFormControl.hasError('pattern') &&
+                         !retypePasswordFormControl.hasError('required')">
+          Please enter a valid Password
+        </mat-error>
+        <mat-error *ngIf="retypePasswordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="dob">
+        <input matInput
+               class="dobTxt"
+               id="dobTxt"
+               placeholder="DoB"
+               required
+               [matDatepicker]="picker"
+               [formControl]="dobFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.dob">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="dobFormControl.hasError('required')">
+          DoB is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="gender">
+        <mat-select class="genderLst" 
+                    id="genderLst" 
+                    placeholder="Gender"
+                    required
+                    [formControl]="genderFormControl"
+                    [errorStateMatcher]="matcher"
+                    [(value)]="user.gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+        <mat-error *ngIf="genderFormControl.hasError('required')">
+          Gender is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="department">
+        <mat-select class="departmentLst"
+                    id="departmentLst" 
+                    placeholder="Department"
+                    [formControl]="departmentFormControl"
+                    [errorStateMatcher]="matcher"
+                    required
+                    [(value)]="user.department">
+          <mat-option value=null>--None--</mat-option>
+          <mat-option *ngFor="let department of departments"
+                      [value]="department.name">
+            {{department.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="departmentFormControl.hasError('required')">
+          Department is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div> 
+    <div class="formGroup">
+      <mat-form-field class="role">
+        <mat-select class="roleLst" 
+                    name="roleLst" 
+                    id="roleLst" 
+                    placeholder="Role"
+                    [formControl]="roleFormControl"
+                    [errorStateMatcher]="matcher"
+                    required
+                    [(value)]="user.role">
+          <mat-option value="Normal">Normal</mat-option>
+        </mat-select>
+        <mat-error *ngIf="roleFormControl.hasError('required')">
+          Role is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div> 
+    <div class="formGroup">
+      <mat-form-field class="address">
+        <input matInput
+               class="addressTxt" 
+               id="addressTxt" 
+               type="text" 
+               placeholder="Address"
+               required
+               [formControl]="addressFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.address">
+        <mat-error *ngIf="addressFormControl.hasError('required')">
+          Address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field class="contactNo">
+        <span matPrefix>+94 &nbsp;</span>
+        <input matInput
+               class="contactNoTxt" 
+               id="contactNoTxt" 
+               type="text" 
+               placeholder="Contact No"
+               required
+               [formControl]="contactNoFormControl"
+               [errorStateMatcher]="matcher"
+               [(ngModel)]="user.contactNo">
+        <mat-hint>Numeric characters only</mat-hint>
+        <mat-error *ngIf="contactNoFormControl.hasError('pattern') && 
+                         !contactNoFormControl.hasError('required') &&
+                         !contactNoFormControl.hasError('minlength') && 
+                         !contactNoFormControl.hasError('maxlength')">
+          Please enter a valid Contact No 
+        </mat-error>
+        <mat-error *ngIf="contactNoFormControl.hasError('required') || 
+                         contactNoFormControl.hasError('minlength') ||
+                         contactNoFormControl.hasError('maxlength')">
+          Contact No is <strong>required</strong> & should have 9 digits
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-flat-button
+            class="signUpBtn"
+            [disabled]="!firstNameFormControl.valid || !lastNameFormControl.valid || !usernameFormControl.valid ||
+                       !passwordFormControl.valid || !retypePasswordFormControl.valid || !dobFormControl.valid || 
+                       !genderFormControl.valid || !departmentFormControl.valid || !roleFormControl.valid ||
+                       !addressFormControl.valid || !contactNoFormControl.valid"
+            (click)="onSignUp()">
+      Sign Up
+    </button>
+    <button mat-stroked-button
+            class="cancelBtn"
+            (click)="onCancel()">
+      Cancel
+    </button>
+    <div id="snackbar1">Successfully Signed Up</div>
+    <div id="snackbar2">Something went wrong!</div>
+    <div id="snackbar3">Passwords do not match!</div>
+    <div id="snackbar4">Username already exists!</div>
+  </form>
+</div>
+<div class="footer">
+  <p>©Copyright 2018 Employee Management System. All Rights Reserved</p>
+</div>

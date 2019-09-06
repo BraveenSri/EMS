@@ -1,0 +1,322 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+}
+.Header {
+    width: 100%;
+    height: 90px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: white;
+    font-family: verdana;
+    border-bottom-style: groove;
+    border-bottom-width: 2px;
+    border-bottom-color: blue;
+}
+.Header img {
+    height: 90px;
+}
+.addBtn {
+    position: absolute;
+    width: 90px;
+    top: 35px;
+    left: 1100px;
+}
+.signOutBtn {
+    position: absolute;
+    width: 90px;
+    top: 35px;
+    left: 1230px;
+}
+.viewBody {
+    position: absolute;
+    left: 0px;
+    top: 92px;
+    width: 100%;
+    height: 520px;
+    background: white;
+}
+.searchHeader {
+    width: 100%;
+    height: 75px;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    background: rgb(233, 233, 233);
+    font-family: verdana;
+    border-bottom-style: groove;
+    border-bottom-width: 2px;
+    border-bottom-color: blue;
+}
+.viewFirstName {
+    position: absolute;
+    width: 200px;
+    top: 15px;
+    left: 25px;
+}
+.viewLastName {
+    position: absolute;
+    width: 200px;
+    top: 15px;
+    left: 250px;
+}
+.viewUserId {
+    position: absolute;
+    width: 200px;
+    top: 15px;
+    left: 475px;
+}
+.viewDepartment {
+    position: absolute;
+    width: 200px;
+    top: 15px;
+    left: 700px;
+}
+.view {
+    position: absolute;
+    left: 0px;
+    top: 75px;
+    width: 100%;
+    height: 443px;
+    background: white;
+}
+table {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial;
+    text-align: center;
+}
+th {
+    border-bottom: 1px solid blue;
+    padding: 0.3em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    font-size: 18px;
+}
+td {
+    border-bottom: 1px solid #bbbbbb;
+    padding: 0.3em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #ddd;
+}
+.deleteBtn {
+    width: 100px;
+    font-weight: bold;
+}
+.updateBtn {
+    width: 100px;
+    font-weight: bold;
+}
+.editBody {
+    position: absolute;
+    left: 0px;
+    top: 92px;
+    width: 100%;
+    height: 520px;
+    background: white;
+    visibility: hidden; 
+}
+.titleHeader {
+    width: 100%;
+    height: 55px;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    background: blue;
+}
+.titleHeader h1 {
+    font-size: 20px;
+    font-family: Cambria;
+    color: white;
+    text-align: center;
+}
+.userId {
+    position: absolute;
+    width: 250px;
+    top: 90px;
+    left: 27%;
+}
+.firstName {
+    position: absolute;
+    width: 250px;
+    top: 155px;
+    left: 27%;
+}
+.lastName {
+    position: absolute;
+    width: 250px;
+    top: 220px;
+    left: 27%;
+}
+.username {
+    position: absolute;
+    width: 250px;
+    top: 285px;
+    left: 27%;
+}
+.dob {
+    position: absolute;
+    width: 250px;
+    top: 350px;
+    left: 27%;
+}
+.gender {
+    position: absolute;
+    width: 250px;
+    top: 90px;
+    right: 27%;
+}
+.department {
+    position: absolute;
+    width: 250px;
+    top: 155px;
+    right: 27%;
+}
+.role {
+    position: absolute;
+    width: 250px;
+    top: 220px;
+    right: 27%;
+}
+.address {
+    position: absolute;
+    width: 250px;
+    top: 285px;
+    right: 27%;
+}
+.contactNo {
+    position: absolute;
+    width: 250px;
+    top: 350px;
+    right: 27%;
+}
+.saveBtn {
+    position: absolute;
+    width: 90px;
+    top: 450px;
+    left: 42%;
+}
+.cancelBtn {
+    position: absolute;
+    width: 90px;
+    top: 450px;
+    right: 42%;
+}
+#snackbar1 {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: rgb(0, 139, 19); 
+    color: #fff; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+}
+#snackbar1.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar2 {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: red; 
+    color: #fff; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+}
+#snackbar2.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar3 {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: rgb(0, 139, 19); 
+    color: #fff; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+}
+#snackbar3.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar4 {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: red; 
+    color: #fff; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+}
+#snackbar4.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+.footer {
+    position: absolute;
+    left: 0px;
+    top: 612px;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    background-size: cover;
+}
+.footer p {
+    font-size: 15px;
+    font-family: Cambria;
+    color: blue;
+    text-align: center;
+}
